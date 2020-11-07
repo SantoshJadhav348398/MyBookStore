@@ -4,18 +4,35 @@
 		<input id="tab-2" type="radio" name="tab" class="sign-up" routerLink="/signup"><label for="tab-2" class="tab">Sign Up</label>
 		<div class="login-form">
 			<div class="sign-in-htm">
-				<div class="group">
+				<mat-form-field class="example-full-width group" appearance="fill">
+					<mat-label class="label" >Username</mat-label>
+					<input matInput [formControl]="usernameFormControl" placeholder="Book@Store">
+					<mat-error *ngIf="usernameFormControl.hasError('required')">
+						Username is <strong>required</strong>
+					</mat-error>
+				</mat-form-field>
+				<!-- <div class="group">
 					<label for="user" class="label">Username</label>
 					<input id="user" type="text" class="input">
-				</div>
-				<div class="group">
+				</div> -->
+				<mat-form-field class="example-full-width group " appearance="fill">
+                    <mat-label class="label">Password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" >
+                    <button mat-icon-button aria-label="Hide password" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+					<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+					</button>
+					<mat-error *ngIf="passwordFormControl.hasError('required')">
+                        Password is <strong>required</strong>
+					</mat-error>
+                </mat-form-field>
+				<!-- <div class="group">
 					<label for="pass" class="label">Password</label>
 					<input id="pass" type="password" class="input" data-type="password">
-				</div>
-				<div class="group">
+				</div> -->
+				<!-- <div class="group">
 					<input id="check" type="checkbox" class="check" checked>
 					<label for="check"><span class="icon"></span> Keep me Signed in</label>
-				</div>
+				</div> -->
 				<div class="group">
 					<input type="submit" class="button" value="Sign In">
 				</div>
