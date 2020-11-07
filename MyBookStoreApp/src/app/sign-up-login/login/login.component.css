@@ -148,3 +148,21 @@ a{color:inherit;text-decoration:none}
 .foot-lnk{
 	text-align:center;
 }
+
+.example-full-width {
+  width: 100%;
+}
+
+textarea:focus, input:focus {
+    color: #FFFFFF;
+}
+
+input {
+	color: #FFFFFF;
+}
+
+
+
+
+
+ 
