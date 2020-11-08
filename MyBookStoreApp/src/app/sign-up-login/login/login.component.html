@@ -6,7 +6,7 @@
 			<div class="sign-in-htm">
 				<mat-form-field class="example-full-width group" appearance="fill">
 					<mat-label class="label" >Username</mat-label>
-					<input matInput [formControl]="usernameFormControl" placeholder="Book@Store">
+					<input matInput [formControl]="usernameFormControl" [(ngModel)]="UserId" placeholder="Book@Store">
 					<mat-error *ngIf="usernameFormControl.hasError('required')">
 						Username is <strong>required</strong>
 					</mat-error>
@@ -17,7 +17,7 @@
 				</div> -->
 				<mat-form-field class="example-full-width group " appearance="fill">
                     <mat-label class="label">Password</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" >
+                    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" [(ngModel)]="pwd">
                     <button mat-icon-button aria-label="Hide password" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
 					<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 					</button>
@@ -34,7 +34,7 @@
 					<label for="check"><span class="icon"></span> Keep me Signed in</label>
 				</div> -->
 				<div class="group">
-					<input type="submit" class="button" value="Sign In">
+					<input type="submit" (click)="OnSubmit()" class="button" value="Sign In">
 				</div>
 				<div class="hr"></div>
 				<div class="foot-lnk">

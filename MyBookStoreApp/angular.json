@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "MyBookStoreApp"
+  "defaultProject": "MyBookStoreApp",
+  "cli": {
+    "analytics": false
+  }
 }
