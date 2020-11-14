@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { LoginSignupServiceService } from 'src/app/login-signup-service.service';
+import { Language } from '../../Enums/Language'
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -8,6 +10,8 @@ import { FormControl, Validators } from '@angular/forms';
 export class SignUpComponent implements OnInit {
   hide1 = true;
   hide2 = true;
+  userNames: string[];
+  language: Array<string> = [];
   usernameFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -24,9 +28,20 @@ export class SignUpComponent implements OnInit {
     }
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
-  constructor() { }
+  constructor(private _signUpservice: LoginSignupServiceService) { }
 
   ngOnInit(): void {
-  }
+
+    // Getting usernames from server
+      this._signUpservice.getUserNames().subscribe(response => this.userNames = response);
+    
+    // Getting existing Language from Enum
+    for (var enumMember in Language) {
+        this.language.push(enumMember);
+      }
+
+      console.log(this.language);
+    }
+  
 
 }

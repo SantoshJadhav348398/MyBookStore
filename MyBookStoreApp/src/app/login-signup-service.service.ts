@@ -33,4 +33,14 @@ export class LoginSignupServiceService {
       );
 
   }
+
+  getUserNames():Observable<string[]>
+  {
+    this.url = "https://localhost:5001/api/LoginRegister/GetUserNames";
+
+    return this.http.get<string[]>(this.url).pipe(
+      tap((response:string[])=> console.log(response))
+    );
+  }
+
 }
