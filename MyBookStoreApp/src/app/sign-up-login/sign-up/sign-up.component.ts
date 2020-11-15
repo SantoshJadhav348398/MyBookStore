@@ -40,7 +40,7 @@ export class SignUpComponent implements OnInit {
         this.language.push(enumMember);
       }
 
-      console.log(this.language);
+      //console.log(this.language);
     }
   
 
