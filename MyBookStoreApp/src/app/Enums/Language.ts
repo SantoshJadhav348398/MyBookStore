@@ -14,10 +14,10 @@
  * *****************************************               #
  */
 
-
+// String Enums
  export enum Language {
      English = "en-US",
      German = "de-DE",
      Hindi = "hi-HI",
-     Chinese = "cz-ch"
+     Chinese = "cz-CHZ"
  }
