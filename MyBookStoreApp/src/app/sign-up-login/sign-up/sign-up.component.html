@@ -27,11 +27,11 @@
 					<mat-error *ngIf="usernameFormControl.hasError('required')">
 						Username is <strong>required</strong>
 					</mat-error>
+					<mat-error *ngIf="usernameFormControl.hasError('existUsernameFlag')">
+						Username is <strong>Already Exists</strong>
+					</mat-error>
 					
 				</mat-form-field>
-				<div *ngIf="existUsernameFlag" style= "color: red;">
-						Username already <strong>Exists</strong>
-				</div>
 
                 <mat-form-field class="example-half-width group " appearance="fill">
                     <mat-label class="label">Password</mat-label>
@@ -55,10 +55,11 @@
 					<mat-error *ngIf="repeatpasswordFormControl.hasError('required')">
                         Password is <strong>required</strong>
 					</mat-error>
+					<mat-error *ngIf="repeatpasswordFormControl.hasError('passwordnotmatch')">
+                        Password doesnot <strong>Match</strong>
+					</mat-error>
                 </mat-form-field>
-                <div *ngIf="passwordFlag" style= "color: red;">
-						Password doesnot <strong>Match</strong>
-				</div>
+                
                 <mat-form-field class="example-half-width group " appearance="fill">
                    <mat-label class="label">Enter your email</mat-label>
                    <input matInput placeholder="pat@example.com" [formControl]="email" [(ngModel)]="EmailId">
