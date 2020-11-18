@@ -149,6 +149,10 @@ a{color:inherit;text-decoration:none}
 	text-align:center;
 }
 
+.example-half-width {
+  width: 50%;
+}
+
 .example-full-width {
   width: 100%;
 }
@@ -157,6 +161,13 @@ textarea:focus, input:focus {
     color: #FFFFFF;
 }
 
-input {
+input , #select {
+	color: #FFFFFF;
+}
+
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+.select {
 	color: #FFFFFF;
 }

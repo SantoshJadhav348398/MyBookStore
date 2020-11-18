@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginSignupServiceService } from 'src/app/login-signup-service.service';
-import { Language } from '../../Enums/Language'
+import { Language } from '../../Enums/Language';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -10,9 +11,28 @@ import { Language } from '../../Enums/Language'
 export class SignUpComponent implements OnInit {
   hide1 = true;
   hide2 = true;
+  FirstNameId: string;
+  LastNameId: string;
+  UserNameId: string;
+  PasswordId: string;
+  RepeatPasswordId: string;
+  selectedLanguage: string;
+  EmailId: string;
+  PhoneNumberId: number;
   userNames: string[];
+  existUsernameFlag: boolean = false;
+  passwordFlag: boolean = false;
   language: Array<string> = [];
+   firstnameFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  lastnameFormControl = new FormControl('', [
+    Validators.required
+  ]);
   usernameFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  phonenumberFormControl = new FormControl('', [
     Validators.required
   ]);
   passwordFormControl = new FormControl('', [
@@ -28,20 +48,59 @@ export class SignUpComponent implements OnInit {
     }
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
-  constructor(private _signUpservice: LoginSignupServiceService) { }
+  constructor(private _signUpservice: LoginSignupServiceService , private router: Router) { }
 
   ngOnInit(): void {
-
+     // this.userNames = ["admin","reena"];
     // Getting usernames from server
       this._signUpservice.getUserNames().subscribe(response => this.userNames = response);
-    
     // Getting existing Language from Enum
-    for (var enumMember in Language) {
+      // tslint:disable-next-line: forin
+      for (let enumMember in Language) {
         this.language.push(enumMember);
       }
 
       //console.log(this.language);
     }
+  submit(): void{
+    //console.log( this.FirstNameId , this.LastNameId, this.UserNameId,this.PasswordId,this.RepeatPasswordId,this.selectedLanguage,this.EmailId,this.PhoneNumberId);
+     let registerUser = {
+      firstName: this.FirstNameId ,
+      lastName: this.LastNameId ,
+      userName: this.UserNameId ,
+      password: this.PasswordId ,
+      isAdmin: 0 ,
+      language: Language.English ,
+      mobileNumber: this.PhoneNumberId ,
+      emailId: this.EmailId
+     };
+     
+     let NavigateCallBack = (response: boolean) => {
+       if(response){
+         this.router.navigate(["login"]);
+       }else{
+         console.log("error in registering data!!");
+       }
+     };
+
+     this._signUpservice.registerUser(registerUser, NavigateCallBack );
+
+    
+
+     
+  }
+
+  checkUserExists(): void{
+      (this.userNames.includes(this.UserNameId)) ? this.existUsernameFlag = true : this.existUsernameFlag = false;
+      console.log(this.existUsernameFlag);
+  }
+
+  passwordCheck(): void{
+    (this.PasswordId === this.RepeatPasswordId) ? this.passwordFlag = false : this.passwordFlag = true;
+  }
   
+  onselectLanguage(ev): void{
+console.log(ev);
+  }
 
 }

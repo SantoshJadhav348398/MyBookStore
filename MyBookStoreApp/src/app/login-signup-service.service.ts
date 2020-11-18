@@ -23,15 +23,22 @@ export class LoginSignupServiceService {
         Id: userId,
         password: pwd
       }
-        this.url =  "https://localhost:5001/api/LoginRegister/ValidateUsers"
+        this.url =  "https://localhost:5001/api/LoginRegister/ValidateUsers";
       //console.log(url);
 
       return this.http.post<Users|null>(this.url, loginData, this.httpOptions).pipe(
-        tap((response:Users|null) => ValidationCallBack(response))
+        tap((response: Users|null) => ValidationCallBack(response))
         /* tap( (response: Users|null)=> (response) ? console.log(response): console.log("something went wrong") 
         ) */
       );
 
+  }
+
+  registerUser(user: Users , NavigateCallBack): void{
+        this.url = "https://localhost:5001/api/LoginRegister/RegisterUser";
+        this.http.post<boolean>(this.url , user , this.httpOptions).pipe(
+        tap((response: boolean) => NavigateCallBack(response)) 
+        );
   }
 
   getUserNames():Observable<string[]>
