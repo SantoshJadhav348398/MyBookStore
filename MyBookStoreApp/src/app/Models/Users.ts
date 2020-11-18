@@ -17,14 +17,14 @@
 export class Users {
     constructor() { }
 
-    Id: number;
+    Id?: number;
     firstName: string;
     lastName: string;
     userName: string;
     password: string;
     isAdmin: number;
     language: string;
-    books: Array<number>;
+    books?: Array<number>;
     mobileNumber: number;
     emailId: string;
 }

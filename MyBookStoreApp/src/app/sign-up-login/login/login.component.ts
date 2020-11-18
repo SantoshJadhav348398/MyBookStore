@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   OnSubmit():void{
     //console.log(this.UserId, this.pwd);
     
-    let ValidationCallBack = (response: Users|null):void => {
+    let ValidationCallBack = (response: Users|null): void => {
       (response) ? this.userInfo = response: this.userInfo = undefined;
       console.log(this.userInfo);
 
@@ -38,9 +38,9 @@ export class LoginComponent implements OnInit {
           // Router.navigateByUrl("/${Home}/${userInfo}");
           // Angular gaurd canLoad  
 
-          this.router.navigate(['/','home'], {queryParams: {id:this.userInfo.Id}}).then(
-            nav =>{ console.log(nav)},
-            err =>{ console.log(err)}
+          this.router.navigate(['/', 'home'], {queryParams: {id: this.userInfo.Id}}).then(
+            nav => { console.log(nav)} ,
+            err => { console.log(err)}
           );
 
         }
