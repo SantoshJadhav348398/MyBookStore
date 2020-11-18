@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginSignupServiceService } from 'src/app/login-signup-service.service';
 import { Language } from '../../Enums/Language';
@@ -30,7 +30,8 @@ export class SignUpComponent implements OnInit {
     Validators.required
   ]);
   usernameFormControl = new FormControl('', [
-    Validators.required
+    Validators.required,
+    //this.checkUserExists()
   ]);
   phonenumberFormControl = new FormControl('', [
     Validators.required
@@ -51,7 +52,7 @@ export class SignUpComponent implements OnInit {
   constructor(private _signUpservice: LoginSignupServiceService , private router: Router) { }
 
   ngOnInit(): void {
-     // this.userNames = ["admin","reena"];
+     //this.userNames = ["admin","reena"];
     // Getting usernames from server
       this._signUpservice.getUserNames().subscribe(response => this.userNames = response);
     // Getting existing Language from Enum
@@ -61,6 +62,10 @@ export class SignUpComponent implements OnInit {
       }
 
       //console.log(this.language);
+        this.usernameFormControl.setValidators([Validators.required,
+        this.checkUserExists()]);
+        this.repeatpasswordFormControl.setValidators([Validators.required,
+        this.passwordCheck()]);
     }
   submit(): void{
     //console.log( this.FirstNameId , this.LastNameId, this.UserNameId,this.PasswordId,this.RepeatPasswordId,this.selectedLanguage,this.EmailId,this.PhoneNumberId);
@@ -70,7 +75,7 @@ export class SignUpComponent implements OnInit {
       userName: this.UserNameId ,
       password: this.PasswordId ,
       isAdmin: 0 ,
-      language: Language.English ,
+      language: Language[this.selectedLanguage] ,
       mobileNumber: this.PhoneNumberId ,
       emailId: this.EmailId
      };
@@ -90,14 +95,19 @@ export class SignUpComponent implements OnInit {
      
   }
 
-  checkUserExists(): void{
-      (this.userNames.includes(this.UserNameId)) ? this.existUsernameFlag = true : this.existUsernameFlag = false;
-      console.log(this.existUsernameFlag);
-  }
+  checkUserExists(): ValidatorFn{
+     
+    return (control: AbstractControl): ValidationErrors => { 
+    return (this.userNames.includes(control.value)) ? {'existUsernameFlag': true} : null;
+      
+    }
+    }
 
-  passwordCheck(): void{
-    (this.PasswordId === this.RepeatPasswordId) ? this.passwordFlag = false : this.passwordFlag = true;
+  passwordCheck(): ValidatorFn{
+    return (control: AbstractControl): ValidationErrors => {
+    return (this.PasswordId !== control.value) ? {'passwordnotmatch' : true} : null;
   }
+}
   
   onselectLanguage(ev): void{
 console.log(ev);
