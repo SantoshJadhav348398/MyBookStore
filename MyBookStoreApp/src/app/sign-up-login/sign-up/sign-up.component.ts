@@ -64,8 +64,10 @@ export class SignUpComponent implements OnInit {
       //console.log(this.language);
         this.usernameFormControl.setValidators([Validators.required,
         this.checkUserExists()]);
+        this.usernameFormControl.updateValueAndValidity();
         this.repeatpasswordFormControl.setValidators([Validators.required,
         this.passwordCheck()]);
+        this.repeatpasswordFormControl.updateValueAndValidity();
     }
   submit(): void{
     //console.log( this.FirstNameId , this.LastNameId, this.UserNameId,this.PasswordId,this.RepeatPasswordId,this.selectedLanguage,this.EmailId,this.PhoneNumberId);
@@ -75,20 +77,21 @@ export class SignUpComponent implements OnInit {
       userName: this.UserNameId ,
       password: this.PasswordId ,
       isAdmin: 0 ,
+      books: [],
       language: Language[this.selectedLanguage] ,
       mobileNumber: this.PhoneNumberId ,
       emailId: this.EmailId
      };
      
-     let NavigateCallBack = (response: boolean) => {
-       if(response){
+     let NavigateCallBack = (response: number) => {
+       if(!response){
          this.router.navigate(["login"]);
        }else{
          console.log("error in registering data!!");
        }
      };
 
-     this._signUpservice.registerUser(registerUser, NavigateCallBack );
+     this._signUpservice.registerUser(registerUser, NavigateCallBack).subscribe();
 
     
 
