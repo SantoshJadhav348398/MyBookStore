@@ -34,10 +34,10 @@ export class LoginSignupServiceService {
 
   }
 
-  registerUser(user: Users , NavigateCallBack): void{
+  registerUser(user: Users , NavigateCallBack): Observable<number>{
         this.url = "https://localhost:5001/api/LoginRegister/RegisterUser";
-        this.http.post<boolean>(this.url , user , this.httpOptions).pipe(
-        tap((response: boolean) => NavigateCallBack(response)) 
+        return this.http.post<number>(this.url , user , this.httpOptions).pipe(
+        tap((response: number) => NavigateCallBack(response)) 
         );
   }
 
