@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  .page-footer { 
+      background-color:black;
+      color: aliceblue;
+  } 
+
+ .footer-copyright{
+     flex: 10 10 auto;
+     /* text-align: right; */
+  }
+
+  .img{
+      padding: 10px;
+  }
+
+  .footer-spacer{
+       flex: 10 10 auto;
+  }
+  
+
+  
+
+  

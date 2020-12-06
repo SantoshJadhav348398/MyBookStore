@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoginSignupServiceService } from 'src/app/login-signup-service.service';
 import { Language } from '../../Enums/Language';
@@ -49,7 +50,7 @@ export class SignUpComponent implements OnInit {
     }
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
-  constructor(private _signUpservice: LoginSignupServiceService , private router: Router) { }
+  constructor(private _signUpservice: LoginSignupServiceService , private router: Router, private _snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
      //this.userNames = ["admin","reena"];
@@ -84,8 +85,10 @@ export class SignUpComponent implements OnInit {
      
      let NavigateCallBack = (response: number) => {
        if(!response){
+         this._snackbar.open("Successfully logged in!!","ok",{duration: 5000});
          this.router.navigate(["login"]);
        }else{
+         this._snackbar.open("Something went wrong!!","ok",{duration: 5000});
          console.log("error in registering data!!");
        }
      };
