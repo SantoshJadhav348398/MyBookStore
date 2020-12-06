@@ -1,0 +1,42 @@
+
+<mat-drawer-container class="example-container" (focusout)="drawer.close()">
+    <mat-toolbar>
+        <mat-toolbar-row class="menu">
+            <mat-icon class="dashboard">dashboard</mat-icon>
+            <legend class="head">{{title}}</legend>
+            <span class="example-spacer"></span>
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="primary"> 
+                <mat-icon aria-label="Side nav toggle icon" class="menu-icon">menu</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-drawer #drawer position='end' mode="side" role="navigation">
+        <mat-nav-list >
+            <div  class="with-icon">
+                <mat-icon>account_box</mat-icon>
+                <a mat-list-item href="#"><b> PROFILE</b></a>
+            </div>
+            <div class="with-icon" *ngIf="isAdmin">
+                <mat-icon> book </mat-icon>
+                <a mat-list-item href="#"><b>ADD BOOK</b></a>
+            </div>
+            <div class="with-icon" *ngIf="isAdmin">
+                <mat-icon>rate_review</mat-icon>
+                <a mat-list-item href="#" ><b>PRODUCT ANALYSIS</b></a>
+            </div>
+            <div class="with-icon">
+                <mat-icon>store</mat-icon>
+                <a mat-list-item href="#"><b>STORE</b></a>
+            </div>
+            <div class="with-icon">
+                <mat-icon>shopping_cart</mat-icon>
+                <a mat-list-item href="#"><b>CART</b></a>
+            </div>
+            <div class="with-icon">
+                <mat-icon> contact_phone</mat-icon>
+                <a mat-list-item href="#"><b>CONTACT US</b></a>
+            </div>
+        </mat-nav-list>
+    </mat-drawer>
+</mat-drawer-container>
