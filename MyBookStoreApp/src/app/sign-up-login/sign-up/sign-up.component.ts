@@ -64,7 +64,6 @@ export class SignUpComponent implements OnInit {
       //console.log(this.language);
         this.usernameFormControl.setValidators([Validators.required,
         this.checkUserExists()]);
-        this.usernameFormControl.updateValueAndValidity();
         this.repeatpasswordFormControl.setValidators([Validators.required,
         this.passwordCheck()]);
         this.repeatpasswordFormControl.updateValueAndValidity();
