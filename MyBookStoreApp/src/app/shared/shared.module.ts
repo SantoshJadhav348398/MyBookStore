@@ -25,7 +25,8 @@ import { FooterComponent } from './footer/footer.component';
     MatIconModule
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }
