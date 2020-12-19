@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DashboardComponent implements OnInit {
 
   par : number;
+  _enableCarousel = true;
   constructor(private route:ActivatedRoute) { }
 
   ngOnInit(): void {

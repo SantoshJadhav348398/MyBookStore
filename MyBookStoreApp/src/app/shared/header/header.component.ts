@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
    title = "MY BOOK STORE";
    @Input() isAdmin;
+   @Input() enableCarousel = false;
   constructor() { }
 
   ngOnInit(): void {
