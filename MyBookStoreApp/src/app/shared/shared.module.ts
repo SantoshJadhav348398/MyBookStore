@@ -10,10 +10,12 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import { FooterComponent } from './footer/footer.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [HeaderComponent, FooterComponent, CarouselComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
@@ -22,7 +24,8 @@ import { FooterComponent } from './footer/footer.component';
     MatTooltipModule,
     MatSnackBarModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatCarouselModule
   ],
   exports: [
     HeaderComponent,

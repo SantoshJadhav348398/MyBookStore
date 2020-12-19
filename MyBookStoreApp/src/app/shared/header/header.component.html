@@ -1,5 +1,5 @@
 
-<mat-drawer-container class="example-container" (focusout)="drawer.close()">
+<mat-drawer-container class="example-container" [hasBackdrop]="true" >
     <mat-toolbar>
         <mat-toolbar-row class="menu">
             <mat-icon class="dashboard">dashboard</mat-icon>
@@ -11,7 +11,7 @@
         </mat-toolbar-row>
     </mat-toolbar>
 
-    <mat-drawer #drawer position='end' mode="side" role="navigation">
+    <mat-drawer #drawer position='end' mode="over" role="navigation">
         <mat-nav-list >
             <div  class="with-icon">
                 <mat-icon>account_box</mat-icon>
@@ -39,4 +39,5 @@
             </div>
         </mat-nav-list>
     </mat-drawer>
+    <app-carousel *ngIf = "enableCarousel == true"></app-carousel>
 </mat-drawer-container>
