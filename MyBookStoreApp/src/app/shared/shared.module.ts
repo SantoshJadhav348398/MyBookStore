@@ -12,10 +12,11 @@ import {MatIconModule} from '@angular/material/icon';
 import { FooterComponent } from './footer/footer.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { CardsComponent } from './cards/cards.component';
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, CarouselComponent],
+  declarations: [HeaderComponent, FooterComponent, CarouselComponent, CardsComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
