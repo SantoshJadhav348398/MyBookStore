@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CardDetails } from '../../Models/card-details';
 
 @Component({
   selector: 'app-cards',
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardsComponent implements OnInit {
 
+  CardDetailsList: CardDetails[] = [
+    //{CardName:'Art Of Programming', CardCategory:'Technology', CardImgUrl:'assets/img/BookImages/ArtOfProgrammingImg.jfif'}
+  ];
   constructor() { }
 
   ngOnInit(): void {

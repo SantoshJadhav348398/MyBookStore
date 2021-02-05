@@ -30,7 +30,9 @@ import { CardsComponent } from './cards/cards.component';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CardsComponent,
+    CarouselComponent
   ]
 })
 export class SharedModule { }

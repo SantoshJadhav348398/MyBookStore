@@ -1,2 +1,29 @@
-<app-header [isAdmin]="0" [enableCarousel]=" _enableCarousel"></app-header>
-<app-footer></app-footer>
+<!-- <app-header [isAdmin]="0" [enableCarousel]=" _enableCarousel"></app-header>
+<app-footer></app-footer> -->
+
+<mat-drawer-container class="example-container" [hasBackdrop]="true" >
+    <mat-drawer #drawer position='end' mode="over" role="navigation">
+        <mat-nav-list >
+            <div *ngFor="let action of ActionList" class="with-icon">
+                <mat-icon>{{action.IconName}}</mat-icon>
+                <a mat-list-item href="#"><b> {{action.MenuName}}</b></a>
+            </div>
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+        <mat-toolbar>
+            <mat-toolbar-row class="menu">
+                <mat-icon class="dashboard">dashboard</mat-icon>
+                <legend class="head">{{title}}</legend>
+                <span class="example-spacer"></span>
+                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="primary"> 
+                    <mat-icon aria-label="Side nav toggle icon" class="menu-icon">menu</mat-icon>
+                </button>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <app-carousel *ngIf = "EnableCarousel"></app-carousel>
+        <app-cards *ngIf = "IsCard"></app-cards>
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+    </mat-drawer-content>
+</mat-drawer-container>
