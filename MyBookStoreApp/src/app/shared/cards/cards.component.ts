@@ -9,7 +9,7 @@ import { CardDetails } from '../../Models/card-details';
 export class CardsComponent implements OnInit {
 
   CardDetailsList: CardDetails[] = [
-    //{CardName:'Art Of Programming', CardCategory:'Technology', CardImgUrl:'assets/img/BookImages/ArtOfProgrammingImg.jfif'}
+    {CardName:'Art Of Programming', CardCategory:'Technology', CardImgUrl:'assets/img/BookImages/ArtOfProgrammingImg.jfif'}
   ];
   constructor() { }
 
