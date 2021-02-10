@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ActionMenu } from '../Models/action-menu';
+import { UserDetails } from '../Models/user-details';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +11,7 @@ import { ActionMenu } from '../Models/action-menu';
 })
 export class DashboardComponent implements OnInit {
 
-  par : number;
+  Id : number;
   EnableCarousel:boolean = true;
   IsCard:boolean = true;
   IsAdmin:boolean = true;
@@ -22,13 +24,20 @@ export class DashboardComponent implements OnInit {
     {Id:5, IconName : "shopping_cart", MenuName: "CART"},
     {Id:6, IconName : "contact_phone", MenuName: "CONTACT US"}
   ];
-  constructor(private route:ActivatedRoute) { }
+  constructor(private route:ActivatedRoute, private _userService: UserService) { }
 
   ngOnInit(): void {
-    this.par = +this.route.snapshot.queryParamMap.get("id");
-
+    this.Id = +this.route.snapshot.queryParamMap.get("id");
+    this.GetUserDetailsById(this.Id);
   }
 
+  public GetUserDetailsById(id: number):void
+  {
+      this._userService.GetUserDetails(id).subscribe((response:UserDetails) =>{
+        //console.log(response);
+        
+      });
+  }
 
 
 }
